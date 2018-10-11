@@ -38,9 +38,9 @@ const rules = {
 };
 
 // Variables
-const round = 1;
 const playerScore1 = 0;
 const playerScore2 = 0;
+let round = 1;
 let playerMove1;
 let playerMove2;
 console.log(playerMove1);
@@ -81,6 +81,26 @@ window.onload = function () {
   moveListener('spock');
   moveListener('lizard');
 
+  // Tracks the number of rounds that have been played
+  const roundTracker = () => {
+    round += 1;
+    const lastChar = round.toString().slice(-1);
+    let suffix;
+    if (round < 30 && round > 20) {
+      suffix = 'th';
+    } else if (lastChar == '1') {
+      suffix = 'st';
+    } else if (lastChar == '2') {
+      suffix = 'nd';
+    } else if (lastChar == '3') {
+      suffix = 'rd';
+    } else {
+      suffix = 'th'
+    }
+    document.querySelector('.round-tracker').innerHTML = round + suffix + ' Round';
+    console.log('tracker works')
+  }
+  
 
   document.querySelector('.results').addEventListener('click', () => {
     if (playerMove1 !== undefined && playerMove2 !== undefined) {
@@ -88,6 +108,7 @@ window.onload = function () {
       document.querySelector('.progress').innerHTML = roundResult[1];
       playerMove1 = undefined;
       playerMove2 = undefined;
+      roundTracker(round);
     } else {
       console.log('something did not work!');
     }
