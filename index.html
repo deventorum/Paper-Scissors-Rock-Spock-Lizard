@@ -4,30 +4,44 @@
 <head>
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <title>Page Title</title>
+  <title>Paper Scissors Rock Spock Lizard</title>
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="stylesheet" type="text/css" media="screen" href="styles/main.css" />
   <script src="scripts/main.js"></script>
 </head>
 
 <body>
-  <main>
+  <header>
+    <h1>Let the battle begin</h1>
     <h2 class='round-tracker'>1st Round</h2>
-    <section class='game'>
-      <form action="">
-        <button class='scissors'>Scissors</button>
-        <button class='rock'>Rock</button>
-        <button class='paper'>Paper</button>
-        <button class='spock'>Spock</button>
-        <button class='lizard'>Lizard</button>
-        <button class="results">Who is the winner?</button>
-      </form>
-      <h2 class='progress'></h2>
-    </section>
-    <section class='rules'>
+    <h2 class='turn'>First player's turn</h2>
+  </header>
+  <main>
+    <div class='wrapper'>
+      <section class='game'>
+        <div class='score-panel'>
+          <div class='player-1-score'>
+            <h3>Player 1 Score</h3>
+            <p>0</p>
+          </div>
+          <div class='player-2-score'>
+            <h3>Player 2 Score</h3>
+            <p>0</p>
+          </div>
+        </div>
+        <form action="">
+          <button class='scissors'>Scissors</button>
+          <button class='rock'>Rock</button>
+          <button class='paper'>Paper</button>
+          <button class='spock'>Spock</button>
+          <button class='lizard'>Lizard</button>
+          <button class='results'>Who is the winner?</button>
+        </form>
+        <h2 class='progress'></h2>
+        <img class='easter-egg' src='' alt=''>
+      </section>
+    </div>
   </main>
-
-  </section>
 </body>
 
 </html>

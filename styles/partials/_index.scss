@@ -1,0 +1,77 @@
+// Compress the images
+body {
+  text-align: center;
+}
+
+img {
+  width: 100%;
+  max-width: 100%;
+  display: block;
+}
+
+h1,
+h2,
+h3 {
+  text-transform: uppercase;
+  margin: 0;
+  margin: 20px;
+}
+
+main {
+  width: 100%;
+}
+
+section {
+  padding: 0 50px;
+  border-top: $border-2;
+  width: 100%;
+}
+
+.wrapper {
+  width: 100%;
+  max-width: 1140px;
+  margin: 0 auto;
+}
+
+.score-panel {
+  margin: 20px;
+}
+
+p {
+  line-height: 1.5;
+  text-align: center;
+  margin: 0;
+}
+
+button:hover {
+  background-color: red;
+  transition: $trans;
+}
+
+.change-player:hover {
+  background-color: blue
+}
+
+form .results:hover {
+  background-color: lightgreen;
+}
+
+button {
+  border: 2px solid black;
+  background-color: white;
+  padding: 20px 30px;
+}
+
+.score-panel p {
+  font-size: 2.5rem;
+}
+
+.player-1-score h3,
+.player-1-score p {
+  color: red;
+}
+
+.player-2-score h3,
+.player-2-score p {
+  color: blue;
+}

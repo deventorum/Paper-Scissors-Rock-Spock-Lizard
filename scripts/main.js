@@ -38,37 +38,38 @@ const rules = {
 };
 
 // Variables
-const playerScore1 = 0;
-const playerScore2 = 0;
+let playerScore1 = 0;
+let playerScore2 = 0;
 let round = 1;
 let playerMove1;
 let playerMove2;
-console.log(playerMove1);
+let roundResult = '';
 
 window.onload = function () {
   // This is necessary to access DOM when it has been properly loaded
-
+  
   // Prevents page reload for all buttons
   document.querySelectorAll('button').forEach((button) => {
     button.addEventListener('click', (event) => {
       event.preventDefault();
-      console.log('button has been clicked');
     });
   });
-
-
-  // Tracks whose turn it is
+  
+  
+  // Tracks whose turn it is and displays it on the page
   const choosePlayer = (objectClass) => {
     if (playerMove1 === undefined) {
+      document.querySelectorAll('button').forEach((button) => {
+        button.classList.toggle('change-player')
+      })
+      document.querySelector('.turn').innerHTML = `Second player's turn`;
       return (playerMove1 = objectClass);
     } else if (playerMove2 === undefined) {
+      document.querySelector('.turn').innerHTML = 'Both players made the move' ;
       return (playerMove2 = objectClass);
-    } else {
-      console.log('Both players made their moves');
-
     }
   };
-
+  
   // Adds event listeres to all buttons
   const moveListener = (objectType) => {
     document.querySelector(`.${objectType}`).addEventListener('click', () => {
@@ -80,13 +81,13 @@ window.onload = function () {
   moveListener('paper');
   moveListener('spock');
   moveListener('lizard');
-
+  
   // Tracks the number of rounds that have been played
   const roundTracker = () => {
     round += 1;
     const lastChar = round.toString().slice(-1);
     let suffix;
-    if (round < 30 && round > 20) {
+    if (round > 10 && round < 20) {
       suffix = 'th';
     } else if (lastChar == '1') {
       suffix = 'st';
@@ -98,19 +99,39 @@ window.onload = function () {
       suffix = 'th'
     }
     document.querySelector('.round-tracker').innerHTML = round + suffix + ' Round';
-    console.log('tracker works')
+  }
+
+  // Easter Egg Image
+  const easterEgg = () => {
+    if (roundResult === rules['rock']['spock'] || roundResult === rules['spock']['rock'] ) {
+      document.querySelector('.easter-egg').src = `assets/spock-rock.jpg`;
+    } else {
+      document.querySelector('.easter-egg').src = ``;
+    }
   }
   
-
+  //Keeps track of the overall score
+  const scoreTracker = () => {
+    playerScore1 += roundResult[0] // roundResult variable has a limited scope
+    playerScore2 += (1 - roundResult[0])
+    document.querySelector('.player-1-score p').innerHTML = playerScore1;
+    document.querySelector('.player-2-score p').innerHTML = playerScore2;
+  }
+  
+  // Shows the results 
   document.querySelector('.results').addEventListener('click', () => {
     if (playerMove1 !== undefined && playerMove2 !== undefined) {
-      const roundResult = rules[playerMove1][playerMove2];
+      roundResult = rules[playerMove1][playerMove2];
       document.querySelector('.progress').innerHTML = roundResult[1];
+      scoreTracker();
       playerMove1 = undefined;
       playerMove2 = undefined;
-      roundTracker(round);
-    } else {
-      console.log('something did not work!');
+      roundTracker();
+      document.querySelector('.turn').innerHTML = `First player's turn`;
+      document.querySelectorAll('button').forEach((button) => {
+        button.classList.toggle('change-player')
+      })
+      easterEgg();
     }
   });
 };
